@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimuWork - AI-Powered Tech Stack Simulations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            padding: 80px 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .slide-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 80px;
+            width: 60px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #003366;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #003366;
+            margin-bottom: 3rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2563eb;
+            margin-bottom: 2rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            font-weight: 400;
+            margin-bottom: 3rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text {
+            font-size: 2rem;
+            color: #2563eb;
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .step-number {
+            background: #2563eb;
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .quote {
+            font-size: 1.8rem;
+            color: #2563eb;
+            font-weight: 500;
+            text-align: center;
+            font-style: italic;
+            margin: 3rem 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #4b5563;
+        }
+
+        li::before {
+            content: '•';
+            color: #2563eb;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0.5rem;
+            top: -0.1rem;
+        }
+
+        .advantages {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .advantage-number {
+            background: #2563eb;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .advantage-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .advantage-content p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .revenue-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .revenue-card h4 {
+            color: #2563eb;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .lean-canvas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .canvas-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 160px;
+        }
+
+        .canvas-title {
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .canvas-box ul {
+            margin: 0;
+        }
+
+        .canvas-box li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .canvas-box p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            right: 80px;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 40px;
+            left: 80px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .cta-box {
+            background: #2563eb;
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: #bfdbfe;
+            margin: 0;
+        }
+
+        /* Title slide specific styles */
+        .title-slide .slide-content {
+            text-align: left;
+            margin-left: 0;
+        }
+
+        .title-slide h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">
+        <span id="current-slide">1</span> of <span id="total-slides">11</span>
+    </div>
+
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <img src="logo.png" alt="SimuWork" class="logo">
+            <div class="slide-content">
+                <h1>SimuWork</h1>
+                <div class="subtitle">AI-Powered Tech Stack Simulations</div>
+                <div class="hero-text">Practice company workflows before your first day</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>The Problem</h2>
+                <div class="subtitle">Companies aren't hiring junior developers</div>
+                
+                <div class="stats-row">
+                    <div class="stat">
+                        <span class="stat-number">50%</span>
+                        <span class="stat-label">Decline in entry-level hires<br>(2019-2024)</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">25%</span>
+                        <span class="stat-label">Reduction by Big Tech<br>(2024 vs 2023)</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">7%</span>
+                        <span class="stat-label">New grads at major<br>tech companies</span>
+                    </div>
+                </div>
+
+                <p>AI automation is targeting junior-level tasks first, creating a growing gap between education and employment that leaves new graduates stranded.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Broken Path -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>The Traditional Path is Broken</h2>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>The Paradox</h3>
+                        <ul>
+                            <li>Bootcamps teach generic skills, not company workflows</li>
+                            <li>Entry-level roles require "2+ years experience"</li>
+                            <li>Can't prove knowledge of actual tech stacks</li>
+                            <li>Companies want immediate productivity</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="highlight-box">
+                            <h3>The Catch-22</h3>
+                            <p>Can't get hired without experience.<br>
+                            Can't get experience without being hired.</p>
+                            <p><strong>AI makes this worse by eliminating traditional learning roles.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Solution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>The Solution</h2>
+                <div class="subtitle">AI-powered company workflow simulations</div>
+                
+                <div class="quote">
+                    "Practice company-specific workflows before you apply"
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li>Practice real tech stacks before applying</li>
+                            <li>Debug payment systems and API integrations</li>
+                            <li>Deploy features in simulated environments</li>
+                            <li>Get AI mentoring through complex workflows</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="highlight-box">
+                            <h4>Example Scenario</h4>
+                            <p>"The Stripe dashboard is failing - debug the React component and Node.js payment service integration"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: How It Works -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>How It Works</h2>
+                
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Choose Target Stack</h4>
+                            <p>Select companies you want to work for</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Practice Real Workflows</h4>
+                            <p>Debug payment systems, fix API endpoints, deploy features</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Build Confidence</h4>
+                            <p>Demonstrate familiarity with company's actual tools</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Interview Ready</h4>
+                            <p>Discuss specific scenarios you've solved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Value Proposition -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Value Proposition</h2>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>For Job Seekers</h3>
+                        <ul>
+                            <li>Bridge education and work experience gap</li>
+                            <li>Gain confidence with actual company tech stacks</li>
+                            <li>Stand out in interviews with hands-on experience</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>For Companies</h3>
+                        <ul>
+                            <li>Pre-trained candidates who know your tools</li>
+                            <li>Reduced training costs and faster productivity</li>
+                            <li>Lower risk junior hires</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 3rem; font-size: 1.3rem; color: #2563eb;">
+                    Value creation for both sides of the hiring equation
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Market -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Market Size</h2>
+                
+                <div class="stats-row">
+                    <div class="stat">
+                        <span class="stat-number">65K</span>
+                        <span class="stat-label">CS graduates<br>annually</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">65K</span>
+                        <span class="stat-label">Bootcamp grads<br>per year</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">200K</span>
+                        <span class="stat-label">Unfilled developer<br>positions</span>
+                    </div>
+                </div>
+
+                <div class="two-column" style="margin-top: 3rem;">
+                    <div>
+                        <h3>Primary Market</h3>
+                        <ul>
+                            <li>Recent CS graduates</li>
+                            <li>Bootcamp graduates</li>
+                            <li>Career switchers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Secondary Market</h3>
+                        <ul>
+                            <li>Mid-size tech companies</li>
+                            <li>Startups reducing onboarding time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Revenue -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Revenue Model</h2>
+                
+                <div class="revenue-grid">
+                    <div class="revenue-card">
+                        <h4>Individual Subscriptions</h4>
+                        <ul>
+                            <li>$39/month full access</li>
+                            <li>$19/month single stack</li>
+                            <li>Free tier: 3 scenarios/month</li>
+                        </ul>
+                    </div>
+                    <div class="revenue-card">
+                        <h4>Enterprise Licensing</h4>
+                        <ul>
+                            <li>$10K-25K annual contracts</li>
+                            <li>Custom workflows: $15K-50K</li>
+                            <li>Assessment fees: $50-100</li>
+                        </ul>
+                    </div>
+                    <div class="revenue-card">
+                        <h4>Partnerships</h4>
+                        <ul>
+                            <li>University licensing: $5K-15K/year</li>
+                            <li>Bootcamp integration: $100/student</li>
+                            <li>Job placement fees: 10-15%</li>
+                        </ul>
+                    </div>
+                    <div class="revenue-card">
+                        <h4>Year 1 Projection</h4>
+                        <ul>
+                            <li>500 subscribers: $234K</li>
+                            <li>5 enterprise: $75K</li>
+                            <li><strong>Total: ~$309K</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Competitive Advantage -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Competitive Advantage</h2>
+                
+                <div class="advantages">
+                    <div class="advantage">
+                        <div class="advantage-number">1</div>
+                        <div class="advantage-content">
+                            <h4>AI-Powered Simulation Creation</h4>
+                            <p>Automated extraction of tech stacks from job descriptions with dynamic scenario generation</p>
+                        </div>
+                    </div>
+                    <div class="advantage">
+                        <div class="advantage-number">2</div>
+                        <div class="advantage-content">
+                            <h4>Proprietary Workflow Database</h4>
+                            <p>First-mover advantage in mapping company-specific processes with network effects</p>
+                        </div>
+                    </div>
+                    <div class="advantage">
+                        <div class="advantage-number">3</div>
+                        <div class="advantage-content">
+                            <h4>Unique Market Position</h4>
+                            <p>Between education and employment - not competing with bootcamps or corporate training</p>
+                        </div>
+                    </div>
+                    <div class="advantage">
+                        <div class="advantage-number">4</div>
+                        <div class="advantage-content">
+                            <h4>Technical Execution</h4>
+                            <p>AI/ML expertise from Duke AIPI program with proven track record building AI tools</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Investment -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Investment Opportunity</h2>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>Market Opportunity</h3>
+                        <ul>
+                            <li>$6B adaptive learning market by 2025</li>
+                            <li>52.7% year-over-year growth</li>
+                            <li>130K+ new tech graduates annually</li>
+                            <li>Perfect timing with AI capabilities</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Investment Thesis</h3>
+                        <p>SimuWork solves the entry-level hiring crisis by giving companies trained junior developers and giving job seekers practical experience they can't get elsewhere.</p>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>Ask: $500K Seed Funding</h3>
+                    <p>18-month runway to prove product-market fit and reach $50K MRR</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Lean Canvas -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Lean Canvas</h2>
+                
+                <div class="lean-canvas">
+                    <div class="canvas-box">
+                        <div class="canvas-title">Problem</div>
+                        <ul>
+                            <li>50% decline in junior hiring</li>
+                            <li>Education ≠ job readiness</li>
+                            <li>Experience paradox</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Solution</div>
+                        <ul>
+                            <li>AI workflow simulations</li>
+                            <li>Company-specific practice</li>
+                            <li>Real debugging scenarios</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Value Proposition</div>
+                        <p><strong>Practice company workflows before you apply</strong></p>
+                        <p>Bridge education-employment gap</p>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Unfair Advantage</div>
+                        <ul>
+                            <li>First-mover AI simulation</li>
+                            <li>Proprietary workflow data</li>
+                            <li>Technical expertise</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Customer Segments</div>
+                        <p><strong>Primary:</strong> CS grads, bootcamp grads, career changers</p>
+                        <p><strong>Secondary:</strong> Companies needing junior devs</p>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Key Metrics</div>
+                        <ul>
+                            <li>Job placement: 70%+</li>
+                            <li>Monthly churn: <5%</li>
+                            <li>CAC payback: <6 months</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Channels</div>
+                        <ul>
+                            <li>University partnerships</li>
+                            <li>Developer communities</li>
+                            <li>Direct B2B sales</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Cost Structure</div>
+                        <ul>
+                            <li>Infrastructure: 40%</li>
+                            <li>Personnel: 45%</li>
+                            <li>Marketing: 10%</li>
+                            <li>Operations: 5%</li>
+                        </ul>
+                    </div>
+                    <div class="canvas-box">
+                        <div class="canvas-title">Revenue Streams</div>
+                        <ul>
+                            <li>Subscriptions: $39/mo</li>
+                            <li>Enterprise: $10K-25K</li>
+                            <li>University partnerships</li>
+                            <li>Referral fees</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 11;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateSlide() {
+            const container = document.getElementById('slideContainer');
+            container.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
