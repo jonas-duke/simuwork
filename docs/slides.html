@@ -30,17 +30,23 @@
         .slide {
             min-width: 100vw;
             min-height: 100vh;
-            padding: 80px 120px 160px;
+            padding: clamp(56px, 10vh, 120px) clamp(32px, 10vw, 140px) clamp(96px, 14vh, 160px);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            gap: clamp(24px, 4vh, 48px);
             position: relative;
             background: #ffffff;
         }
 
         .slide-content {
-            max-width: 1000px;
+            width: min(960px, 100%);
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: clamp(16px, 2.5vh, 32px);
         }
 
         .logo {
@@ -64,7 +70,7 @@
             font-size: 2.8rem;
             font-weight: 600;
             color: #003366;
-            margin-bottom: 3rem;
+            margin-bottom: 0;
             letter-spacing: -0.01em;
         }
 
@@ -79,7 +85,7 @@
             font-size: 1.5rem;
             color: #6b7280;
             font-weight: 400;
-            margin-bottom: 3rem;
+            margin-bottom: 0;
         }
 
         p {
@@ -93,7 +99,7 @@
             font-size: 2rem;
             color: #2563eb;
             font-weight: 500;
-            margin-top: 2rem;
+            margin-top: 0;
         }
 
         .two-column {
@@ -106,8 +112,8 @@
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-            margin: 4rem 0;
+            gap: 3rem;
+            margin: 0;
         }
 
         .stat {
@@ -132,7 +138,7 @@
         .process-steps {
             display: grid;
             gap: 2rem;
-            margin: 3rem 0;
+            margin: 0;
         }
 
         .step {
@@ -176,7 +182,7 @@
             border: 2px solid #bfdbfe;
             border-radius: 12px;
             padding: 2.5rem;
-            margin: 2rem 0;
+            margin: 0;
         }
 
         .quote {
@@ -185,7 +191,7 @@
             font-weight: 500;
             text-align: center;
             font-style: italic;
-            margin: 3rem 0;
+            margin: 0;
         }
 
         ul {
@@ -213,7 +219,7 @@
         .advantages {
             display: grid;
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 0;
         }
 
         .advantage {
@@ -254,7 +260,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 3rem;
-            margin: 3rem 0;
+            margin: 0;
         }
 
         .revenue-card {
@@ -275,7 +281,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 0;
         }
 
         .canvas-box {
@@ -357,7 +363,7 @@
             border-radius: 12px;
             padding: 2.5rem;
             text-align: center;
-            margin: 2rem 0;
+            margin: 0;
         }
 
         .cta-box h3 {
@@ -374,6 +380,7 @@
         .title-slide .slide-content {
             text-align: left;
             margin-left: 0;
+            align-items: flex-start;
         }
 
         .title-slide h1 {
@@ -388,15 +395,23 @@
 
         @media (max-width: 1200px) {
             .slide {
-                padding: 70px 64px 160px;
+                padding: clamp(48px, 9vh, 96px) clamp(32px, 8vw, 96px) clamp(80px, 12vh, 140px);
             }
 
             .slide-content {
-                max-width: 90vw;
+                width: min(880px, 100%);
             }
         }
 
         @media (max-width: 900px) {
+            .slide {
+                padding: clamp(40px, 8vh, 80px) clamp(24px, 9vw, 72px) clamp(72px, 12vh, 120px);
+            }
+
+            .slide-content {
+                width: min(720px, 100%);
+            }
+
             h1 {
                 font-size: 3rem;
             }
@@ -473,7 +488,7 @@
 
         @media (max-width: 600px) {
             .slide {
-                padding: 48px 20px 140px;
+                padding: 40px 20px 120px;
             }
 
             h1 {
