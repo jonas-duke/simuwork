@@ -105,7 +105,7 @@
 
         /* Logo - static above title */
         .logo {
-            width: 80px;
+            width: 100px;
             height: auto;
             opacity: 0.9;
             margin-bottom: 2rem;
@@ -460,51 +460,62 @@
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            background: white;
-            border: 2px solid var(--border);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            transition: all 0.3s ease;
-            opacity: 0.7;
-            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Show arrows on hover near edges or when focused */
+        .slide-container:hover .nav-arrow:not(:disabled),
+        .nav-arrow:focus:not(:disabled) {
+            opacity: 0.6;
         }
 
         .nav-arrow:hover:not(:disabled) {
             opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-50%) scale(1.15);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
 
-        .nav-arrow:hover:not(:disabled) svg {
-            fill: white;
+        .nav-arrow:active:not(:disabled) {
+            transform: translateY(-50%) scale(1.05);
         }
 
         .nav-arrow:disabled {
-            opacity: 0.2;
+            opacity: 0;
             cursor: not-allowed;
+            pointer-events: none;
         }
 
         .nav-arrow.prev {
-            left: 40px;
+            left: 32px;
         }
 
         .nav-arrow.next {
-            right: 40px;
+            right: 32px;
         }
 
         .nav-arrow svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--text-secondary);
-            transition: fill 0.3s ease;
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-secondary);
+            transition: stroke 0.3s ease;
+        }
+
+        .nav-arrow:hover:not(:disabled) svg {
+            stroke: var(--accent);
         }
 
         .nav-arrow.prev svg {
@@ -518,22 +529,31 @@
         /* Slide counter with better styling */
         .slide-counter {
             position: fixed;
-            bottom: 48px;
-            left: 80px;
-            padding: 12px 20px;
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 600;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.3);
+            border-radius: 24px;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 500;
             z-index: 1000;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .slide-counter:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .slide-counter span {
-            color: var(--accent);
-            font-weight: 700;
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         /* Enhanced CTA box */
@@ -706,28 +726,36 @@
             }
 
             .nav-arrow {
-                bottom: 24px;
+                bottom: 80px;
                 top: auto;
                 transform: none;
-                opacity: 0.8;
+                opacity: 0;
+            }
+
+            .slide-container:hover .nav-arrow:not(:disabled),
+            .nav-arrow:focus:not(:disabled) {
+                opacity: 0.5;
             }
 
             .nav-arrow:hover:not(:disabled) {
+                opacity: 0.9;
                 transform: scale(1.1);
             }
 
+            .nav-arrow:active:not(:disabled) {
+                transform: scale(1);
+            }
+
             .nav-arrow.prev {
-                left: 24px;
+                left: 20px;
             }
 
             .nav-arrow.next {
-                right: 24px;
+                right: 20px;
             }
 
             .slide-counter {
-                bottom: auto;
-                top: 24px;
-                left: 24px;
+                bottom: 24px;
             }
 
             .logo {
