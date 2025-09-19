@@ -51,7 +51,7 @@
         .slide {
             min-width: 100vw;
             min-height: 100vh;
-            padding: 60px 120px;
+            padding: 50px 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -75,19 +75,22 @@
         }
 
         .slide-content {
-            width: min(1120px, 100%);
+            width: 100%;
+            max-width: 1200px;
+            height: calc(100vh - 100px);
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
             position: relative;
             z-index: 1;
             align-items: stretch;
-            justify-content: center;
-            max-height: 85vh;
+            justify-content: flex-start;
             overflow-y: auto;
+            overflow-x: hidden;
             scrollbar-width: thin;
             scrollbar-color: var(--border) transparent;
+            padding-top: 0.5rem;
         }
 
         .slide-content::-webkit-scrollbar {
@@ -116,9 +119,9 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Typography improvements */
+        /* Typography improvements - responsive sizing */
         h1 {
-            font-size: clamp(3.5rem, 8vw, 5.5rem);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 800;
             background: var(--gradient-1);
             -webkit-background-clip: text;
@@ -126,39 +129,39 @@
             background-clip: text;
             letter-spacing: -0.04em;
             line-height: 1;
-            margin-bottom: 1rem;
+            margin-bottom: min(2vh, 1rem);
             animation: fadeInUp 0.8s ease-out;
         }
 
         h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--primary);
             letter-spacing: -0.03em;
             line-height: 1.2;
-            margin-bottom: 0.5rem;
+            margin-bottom: min(1.5vh, 0.75rem);
         }
 
         h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.1rem, 2.2vw, 1.75rem);
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: min(2vh, 1rem);
         }
 
         .subtitle {
-            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-size: clamp(1rem, 2vw, 1.75rem);
             color: var(--text-secondary);
             font-weight: 400;
-            margin-bottom: 0.75rem;
+            margin-bottom: min(1.5vh, 0.75rem);
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         p {
-            font-size: 1.125rem;
+            font-size: clamp(0.9rem, 1.6vw, 1.125rem);
             color: var(--text-secondary);
             line-height: 1.7;
-            margin-bottom: 1rem;
+            margin-bottom: min(2vh, 1rem);
         }
 
         /* Hero text with gradient animation */
@@ -191,19 +194,19 @@
             }
         }
 
-        /* Enhanced stats with better visual hierarchy */
+        /* Enhanced stats with better visual hierarchy - responsive */
         .stats-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 30vw), 1fr));
+            gap: min(3vw, 2rem);
+            margin: min(3vh, 1.5rem) 0;
         }
 
         .stat {
             text-align: center;
-            padding: 1.5rem;
+            padding: min(3vh, 1.5rem);
             background: var(--gradient-subtle);
-            border-radius: 20px;
+            border-radius: min(3vw, 20px);
             border: 1px solid var(--border);
             transition: all 0.3s ease;
             position: relative;
@@ -234,36 +237,36 @@
 
         .stat-number {
             display: block;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 800;
             background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: min(1vh, 0.5rem);
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: clamp(0.7rem, 1.3vw, 0.875rem);
             color: var(--text-secondary);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* Improved process steps */
+        /* Improved process steps - responsive */
         .process-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 45vw), 1fr));
+            gap: min(2vw, 1.5rem);
+            margin: min(3vh, 1.5rem) 0;
         }
 
         .step {
-            padding: 1.5rem;
+            padding: min(3vh, 1.5rem);
             background: white;
-            border-radius: 16px;
+            border-radius: min(2vw, 16px);
             border: 2px solid var(--border);
             position: relative;
             transition: all 0.3s ease;
@@ -295,30 +298,30 @@
         }
 
         .step-number {
-            width: 40px;
-            height: 40px;
+            width: min(6vh, 40px);
+            height: min(6vh, 40px);
             background: var(--gradient-1);
             color: white;
-            border-radius: 12px;
+            border-radius: min(1.5vw, 12px);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 1.8vw, 1.125rem);
+            margin-bottom: min(2vh, 1rem);
             box-shadow: var(--shadow-lg);
         }
 
         .step-content h4 {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: min(1.5vh, 0.75rem);
         }
 
         .step-content p {
             margin: 0;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
             color: var(--text-secondary);
             line-height: 1.6;
         }
@@ -378,7 +381,7 @@
             right: 0;
         }
 
-        /* Better list styling */
+        /* Better list styling - responsive */
         ul {
             list-style: none;
             padding: 0;
@@ -386,23 +389,23 @@
 
         li {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1.25rem;
-            font-size: 1.125rem;
+            padding-left: min(3vw, 2rem);
+            margin-bottom: min(2vh, 1.25rem);
+            font-size: clamp(0.9rem, 1.6vw, 1.125rem);
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 0.75rem;
-            width: 8px;
-            height: 8px;
+            top: min(1.2vh, 0.75rem);
+            width: min(1vw, 8px);
+            height: min(1vw, 8px);
             background: var(--gradient-1);
             border-radius: 50%;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 min(0.5vw, 3px) rgba(59, 130, 246, 0.1);
         }
 
         /* Enhanced canvas boxes */
@@ -602,18 +605,18 @@
             align-items: start;
         }
 
-        /* Revenue grid improvements */
+        /* Revenue grid improvements - responsive */
         .revenue-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(240px, 45vw), 1fr));
+            gap: min(2vw, 1.5rem);
         }
 
         .revenue-card {
             background: white;
             border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: min(2vw, 16px);
+            padding: min(3vh, 2rem);
             transition: all 0.3s ease;
             position: relative;
         }
@@ -624,42 +627,42 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: min(0.5vh, 4px);
             background: var(--gradient-1);
-            border-radius: 16px 16px 0 0;
+            border-radius: min(2vw, 16px) min(2vw, 16px) 0 0;
         }
 
         .revenue-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(min(-0.5vh, -4px));
             box-shadow: var(--shadow-xl);
             border-color: var(--accent-light);
         }
 
         .revenue-card h4 {
             color: var(--primary);
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: min(2vh, 1.5rem);
         }
 
-        /* Advantages styling */
+        /* Advantages styling - responsive */
         .advantages {
             display: grid;
-            gap: 1.5rem;
+            gap: min(1.5vh, 1rem);
         }
 
         .advantage {
             display: flex;
-            gap: 1.5rem;
-            padding: 1.75rem;
+            gap: min(2vw, 1.25rem);
+            padding: min(2vh, 1.25rem);
             background: white;
             border: 2px solid var(--border);
-            border-radius: 16px;
+            border-radius: min(2vw, 16px);
             transition: all 0.3s ease;
         }
 
         .advantage:hover {
-            transform: translateX(8px);
+            transform: translateX(min(1vw, 8px));
             box-shadow: var(--shadow-lg);
             border-color: var(--accent-light);
         }
@@ -667,53 +670,115 @@
         .advantage-number {
             background: var(--gradient-1);
             color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: min(5vh, 36px);
+            height: min(5vh, 36px);
+            border-radius: min(1.5vw, 10px);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
             flex-shrink: 0;
             box-shadow: var(--shadow-md);
+        }
+
+        .advantage-content h4 {
+            font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: min(0.5vh, 0.25rem);
+        }
+
+        .advantage-content p {
+            margin: 0;
+            font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+            line-height: 1.5;
         }
 
         /* Responsive design */
         @media (max-width: 1024px) {
             .slide {
-                padding: 50px 60px;
+                padding: 40px 50px;
+            }
+
+            .slide-content {
+                height: calc(100vh - 80px);
             }
 
             .two-column,
             .revenue-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .lean-canvas {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .advantages {
+                gap: 0.75rem;
+            }
+
+            .advantage {
+                padding: 1rem;
             }
         }
 
         @media (max-width: 768px) {
             .slide {
-                padding: 40px 24px 80px;
+                padding: 30px 20px;
+            }
+
+            .slide-content {
+                height: calc(100vh - 60px);
+                gap: 1rem;
             }
 
             h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             h2 {
-                font-size: 2rem;
+                font-size: 1.75rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
             }
 
             .stats-row {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .process-steps {
                 grid-template-columns: 1fr;
+            }
+
+            .lean-canvas {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .canvas-box {
+                min-height: auto;
+                padding: 0.875rem;
+            }
+
+            .advantages {
+                gap: 0.5rem;
+            }
+
+            .advantage {
+                padding: 0.875rem;
+                gap: 1rem;
+            }
+
+            .advantage-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.875rem;
             }
 
             .nav-arrow {
@@ -1069,10 +1134,10 @@
 
         <!-- Slide 11: Lean Canvas -->
         <div class="slide">
-            <div class="slide-content">
-                <h2>Lean Canvas</h2>
+            <div class="slide-content" style="justify-content: flex-start; padding-top: 0; gap: min(1.5vh, 1rem);">
+                <h2 style="margin-bottom: min(1.5vh, 1rem);">Lean Canvas</h2>
                 
-                <div class="lean-canvas">
+                <div class="lean-canvas" style="flex: 1; min-height: 0;">
                     <div class="canvas-box">
                         <div class="canvas-title">Problem</div>
                         <ul>
